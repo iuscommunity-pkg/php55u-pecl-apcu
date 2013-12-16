@@ -15,8 +15,8 @@
 
 Name:           %{php_base}-pecl-apcu
 Summary:        APC User Cache
-Version:        4.0.1
-Release:        2.ius%{?dist}
+Version:        4.0.2
+Release:        1.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
 Source2:        %{pecl_name}-panel.conf
@@ -26,8 +26,8 @@ License:        PHP
 Group:          Development/Languages
 URL:            http://pecl.php.net/package/APCu
 
-BuildRequires:  php-devel
-BuildRequires:  php-pear
+BuildRequires:  %{php_base}-devel
+BuildRequires:  %{php_base}-pear
 
 Requires(post): %{__pecl}
 Requires(postun): %{__pecl}
@@ -242,7 +242,7 @@ fi
 
 
 %changelog
-* Mon Dec 16 2013 Ben Harper <ben.harper@rackspace.com> - 4.0.1-2.ius
+* Mon Dec 16 2013 Ben Harper <ben.harper@rackspace.com> - 4.0.2-1.ius
 - porting to IUS
 
 * Tue Apr 30 2013 Remi Collet <remi@fedoraproject.org> - 4.0.1-1
