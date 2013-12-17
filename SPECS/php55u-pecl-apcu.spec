@@ -109,7 +109,7 @@ Requires:      mod_php, httpd, php-gd
 Obsoletes:      apc-panel < 4
 Provides:       apc-devel = %{version}-%{release}
 
-%description  -n apcu-panel
+%description  -n apcu-panel55u
 This package provides the APCu control panel, with Apache
 configuration, available on http://localhost/apcu-panel/
 
@@ -231,7 +231,7 @@ fi
 %{php_ztsincldir}/ext/%{pecl_name}
 %endif
 
-%files -n apcu-panel
+%files -n apcu-panel55u
 %defattr(-,root,root,-)
 # Need to restrict access, as it contains a clear password
 %attr(750,apache,root) %dir %{_sysconfdir}/apcu-panel
