@@ -33,7 +33,6 @@ Requires(post): %{__pecl}
 Requires(postun): %{__pecl}
 Requires:       %{php_base}(zend-abi) = %{php_zend_api}
 Requires:       %{php_base}(api) = %{php_core_api}
-Requires:       %{php_base}-pecl-zendopcache
 
 Obsoletes:      %{php_base}-apcu < 4.0.0-1
 Conflicts:      %{php_base}-pecl-apc %{php_base}-xcache
@@ -101,7 +100,7 @@ Provides:       php-pecl-apc-devel%{?_isa} = %{version}-%{release}
 These are the files needed to compile programs using APCu.
 
 
-%package -n apcu-panel
+%package -n apcu-panel55u
 Summary:       APCu control panel
 Group:         Applications/Internet
 BuildArch:     noarch
