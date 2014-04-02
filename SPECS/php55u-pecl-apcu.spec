@@ -15,7 +15,7 @@
 
 Name:           %{php_base}-pecl-apcu
 Summary:        APC User Cache
-Version:        4.0.2
+Version:        4.0.4
 Release:        1.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
@@ -241,6 +241,9 @@ fi
 
 
 %changelog
+* Wed Apr 02 2014 Ben Harper <ben.harper@rackspace.com> - 4.0.4-1.ius
+- Latest sources from upstream
+
 * Mon Dec 16 2013 Ben Harper <ben.harper@rackspace.com> - 4.0.2-1.ius
 - porting to IUS
 
