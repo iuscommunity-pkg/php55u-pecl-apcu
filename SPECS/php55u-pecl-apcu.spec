@@ -121,7 +121,7 @@ mv %{pecl_name}-%{version} NTS
 cd NTS
 
 # Sanity check, really often broken
-extver=$(sed -n '/#define PHP_APC_VERSION/{s/.* "//;s/".*$//;p}' php_apc.h)
+extver=$(sed -n '/#define PHP_APCU_VERSION/{s/.* "//;s/".*$//;p}' php_apc.h)
 if test "x${extver}" != "x%{version}"; then
    : Error: Upstream extension version is ${extver}, expecting %{version}.
    exit 1
@@ -243,6 +243,7 @@ fi
 %changelog
 * Wed Apr 02 2014 Ben Harper <ben.harper@rackspace.com> - 4.0.4-1.ius
 - Latest sources from upstream
+- update Sanity check in prep
 
 * Mon Dec 16 2013 Ben Harper <ben.harper@rackspace.com> - 4.0.2-1.ius
 - porting to IUS
