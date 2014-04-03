@@ -16,7 +16,7 @@
 Name:           %{php_base}-pecl-apcu
 Summary:        APC User Cache
 Version:        4.0.4
-Release:        1.ius%{?dist}
+Release:        2.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
 Source2:        %{pecl_name}-panel.conf
@@ -105,7 +105,7 @@ Summary:       APCu control panel
 Group:         Applications/Internet
 BuildArch:     noarch
 Requires:      %{name} = %{version}-%{release}
-Requires:      mod_php, httpd, php-gd
+Requires:      mod_php55u, httpd, %{php_base}-gd
 Obsoletes:      apc-panel < 4
 Provides:       apc-devel = %{version}-%{release}
 
@@ -241,6 +241,9 @@ fi
 
 
 %changelog
+* Thu Apr 03 2014 Ben Harper <ben.harper@rackspace.com> - 4.0.4-2.ius
+- updated requires from php-gd to %{php_base}-gd and mod_php to mod_php55u
+
 * Wed Apr 02 2014 Ben Harper <ben.harper@rackspace.com> - 4.0.4-1.ius
 - Latest sources from upstream
 - update Sanity check in prep
