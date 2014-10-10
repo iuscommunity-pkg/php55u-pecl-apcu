@@ -9,9 +9,9 @@
 
 %global pecl_name apcu
 %global with_zts  0%{?__ztsphp:1}
-%define php_base php55u
+%global php_base php55u
 
-Name:           %{php_base}-pecl-apcu
+Name:           %{php_base}-pecl-%{pecl_name}
 Summary:        APC User Cache
 Version:        4.0.6
 Release:        1.ius%{?dist}
@@ -36,27 +36,33 @@ Requires:       %{php_base}(api) = %{php_core_api}
 Conflicts:      %{php_base}-pecl-apc %{php_base}-xcache
 Conflicts:      %{php_base}-mmcache %{php_base}-eaccelerator
 
-Provides:       php-apcu = %{version}
-Provides:       %{php_base}-apcu = %{version}
-Provides:       php-apcu%{?_isa} = %{version}
-Provides:       %{php_base}-apcu%{?_isa} = %{version}
-Provides:       php-pecl(apcu) = %{version}
-Provides:       %{php_base}-pecl(apcu) = %{version}
-Provides:       php-pecl(apcu)%{?_isa} = %{version}
-Provides:       %{php_base}-pecl(apcu)%{?_isa} = %{version}
+Provides:       php-%{pecl_name} = %{version}
+Provides:       php-%{pecl_name}%{?_isa} = %{version}
+Provides:       php-pecl-apcu = %{version}
+Provides:       php-pecl-apcu%{?_isa} = %{version}
+Provides:       php-pecl(%{pecl_name}) = %{version}
+Provides:       php-pecl(%{pecl_name})%{?_isa} = %{version}
+Provides:       %{php_base}-%{pecl_name} = %{version}
+Provides:       %{php_base}-%{pecl_name}%{?_isa} = %{version}
+Provides:       %{php_base}-pecl-%{pecl_name} = %{version}
+Provides:       %{php_base}-pecl-%{pecl_name}%{?_isa} = %{version}
+Provides:       %{php_base}-pecl(%{pecl_name}) = %{version}
+Provides:       %{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
+
+Conflicts:      php-pecl-apcu < %{version}
 
 # Same provides than APC, this is a drop in replacement
 Provides:       php-apc = %{version}
-Provides:       %{php_base}-apc = %{version}
 Provides:       php-apc%{?_isa} = %{version}
-Provides:       %{php_base}-apc%{?_isa} = %{version}
 Provides:       php-pecl-apc = %{version}
-Provides:       %{php_base}-pecl-apc = %{version}
 Provides:       php-pecl-apc%{?_isa} = %{version}
-Provides:       %{php_base}-pecl-apc%{?_isa} = %{version}
 Provides:       php-pecl(APC) = %{version}
-Provides:       %{php_base}-pecl(APC) = %{version}
 Provides:       php-pecl(APC)%{?_isa} = %{version}
+Provides:       %{php_base}-apc = %{version}
+Provides:       %{php_base}-apc%{?_isa} = %{version}
+Provides:       %{php_base}-pecl-apc = %{version}
+Provides:       %{php_base}-pecl-apc%{?_isa} = %{version}
+Provides:       %{php_base}-pecl(APC) = %{version}
 Provides:       %{php_base}-pecl(APC)%{?_isa} = %{version}
 
 # Filter private shared
@@ -90,8 +96,11 @@ Summary:       APCu developer files (header)
 Group:         Development/Libraries
 Requires:      %{name}%{?_isa} = %{version}-%{release}
 Requires:      %{php_base}-devel%{?_isa}
-Provides:       php-pecl-apc-devel = %{version}-%{release}
-Provides:       php-pecl-apc-devel%{?_isa} = %{version}-%{release}
+Conflicts:     php-pecl-%{pecl_name}-devel < %{version}
+Provides:      php-pecl-%{pecl_name}-devel = %{version}
+Provides:      php-pecl-%{pecl_name}-devel%{?_isa} = %{version}
+Provides:      php-pecl-apc-devel = %{version}
+Provides:      php-pecl-apc-devel%{?_isa} = %{version}
 
 %description devel
 These are the files needed to compile programs using APCu.
@@ -102,8 +111,12 @@ Summary:       APCu control panel
 Group:         Applications/Internet
 BuildArch:     noarch
 Requires:      %{name} = %{version}-%{release}
-Requires:      mod_php55u, httpd, %{php_base}-gd
-Provides:       apc-devel = %{version}-%{release}
+Requires:      mod_php55u
+Requires:      %{php_base}-gd
+Requires:      httpd
+Conflicts:     apcu-panel < %{version}
+Provides:      apcu-panel = %{version}
+Provides:      apc-panel = %{version}
 
 %description -n apcu-panel55u
 This package provides the APCu control panel, with Apache
