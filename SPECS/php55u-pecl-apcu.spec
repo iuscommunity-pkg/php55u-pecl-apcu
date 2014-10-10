@@ -10,6 +10,7 @@
 %global pecl_name apcu
 %global with_zts  0%{?__ztsphp:1}
 %global php_base php55u
+%global ini_name  40-%{pecl_name}.ini
 
 Name:           %{php_base}-pecl-%{pecl_name}
 Summary:        APC User Cache
@@ -160,12 +161,12 @@ make %{?_smp_mflags}
 %install
 # Install the NTS stuff
 make -C NTS install INSTALL_ROOT=%{buildroot}
-install -D -m 644 %{SOURCE1} %{buildroot}%{php_inidir}/%{pecl_name}.ini
+install -D -m 644 %{SOURCE1} %{buildroot}%{php_inidir}/%{ini_name}
 
-# Install the ZTS stuff
 %if %{with_zts}
+# Install the ZTS stuff
 make -C ZTS install INSTALL_ROOT=%{buildroot}
-install -D -m 644 %{SOURCE1} %{buildroot}%{php_ztsinidir}/%{pecl_name}.ini
+install -D -m 644 %{SOURCE1} %{buildroot}%{php_ztsinidir}/%{ini_name}
 %endif
 
 # Install the package XML file
@@ -225,13 +226,11 @@ fi
 %files
 %doc NTS/{NOTICE,LICENSE,README.md}
 %{pecl_xmldir}/%{name}.xml
-
-%config(noreplace) %{php_inidir}/%{pecl_name}.ini
+%config(noreplace) %{php_inidir}/%{ini_name}
 %{php_extdir}/%{pecl_name}.so
-
 %if %{with_zts}
 %{php_ztsextdir}/%{pecl_name}.so
-%config(noreplace) %{php_ztsinidir}/%{pecl_name}.ini
+%config(noreplace) %{php_ztsinidir}/%{ini_name}
 %endif
 
 %files devel
