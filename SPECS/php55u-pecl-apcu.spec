@@ -6,9 +6,7 @@
 #
 # Please, preserve the changelog entries
 #
-%{!?php_inidir:  %{expand: %%global php_inidir  %{_sysconfdir}/php.d}}
-%{!?php_incldir: %{expand: %%global php_incldir %{_includedir}/php}}
-%{!?__pecl:      %{expand: %%global __pecl      %{_bindir}/pecl}}
+
 %global pecl_name apcu
 %global with_zts  0%{?__ztsphp:1}
 %define php_base php55u
