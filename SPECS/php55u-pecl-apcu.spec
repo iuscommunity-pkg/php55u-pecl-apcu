@@ -257,7 +257,7 @@ fi
 
 %files -n apcu-panel55u
 # Need to restrict access, as it contains a clear password
-%attr(750,apache,root) %dir %{_sysconfdir}/apcu-panel
+%attr(550,apache,root) %dir %{_sysconfdir}/apcu-panel
 %config(noreplace) %{_sysconfdir}/apcu-panel/conf.php
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/apcu-panel.conf
 %{_datadir}/apcu-panel
