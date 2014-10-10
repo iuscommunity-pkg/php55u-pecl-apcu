@@ -187,6 +187,15 @@ install -D -m 644 -p %{SOURCE2} \
 install -D -m 644 -p %{SOURCE3} \
         %{buildroot}%{_sysconfdir}/apcu-panel/conf.php
 
+# Test & Documentation
+cd NTS
+for i in $(grep 'role="test"' ../package.xml | sed -e 's/^.*name="//;s/".*$//')
+do install -Dpm 644 $i %{buildroot}%{pecl_testdir}/%{pecl_name}/$i
+done
+for i in $(grep 'role="doc"' ../package.xml | sed -e 's/^.*name="//;s/".*$//')
+do install -Dpm 644 $i %{buildroot}%{pecl_docdir}/%{pecl_name}/$i
+done
+
 
 %check
 cd NTS
@@ -195,7 +204,7 @@ cd NTS
 %{_bindir}/php -n -d extension_dir=modules -d extension=apcu.so -m | grep 'apcu'
 %{_bindir}/php -n -d extension_dir=modules -d extension=apcu.so -m | grep 'apc$'
 
-# Upstream test suite
+# Upstream test suite for NTS extension
 TEST_PHP_EXECUTABLE=%{_bindir}/php \
 TEST_PHP_ARGS="-n -d extension_dir=$PWD/modules -d extension=%{pecl_name}.so" \
 NO_INTERACTION=1 \
@@ -208,6 +217,7 @@ cd ../ZTS
 %{__ztsphp}    -n -d extension_dir=modules -d extension=apcu.so -m | grep 'apcu'
 %{__ztsphp}    -n -d extension_dir=modules -d extension=apcu.so -m | grep 'apc$'
 
+# Upstream test suite for ZTS extension
 TEST_PHP_EXECUTABLE=%{__ztsphp} \
 TEST_PHP_ARGS="-n -d extension_dir=$PWD/modules -d extension=%{pecl_name}.so" \
 NO_INTERACTION=1 \
@@ -227,7 +237,7 @@ fi
 
 
 %files
-%doc NTS/{NOTICE,LICENSE,README.md}
+%doc %{pecl_docdir}/%{pecl_name}
 %{pecl_xmldir}/%{name}.xml
 %config(noreplace) %{php_inidir}/%{ini_name}
 %{php_extdir}/%{pecl_name}.so
@@ -236,14 +246,16 @@ fi
 %config(noreplace) %{php_ztsinidir}/%{ini_name}
 %endif
 
+
 %files devel
+%doc %{pecl_testdir}/%{pecl_name}
 %{php_incldir}/ext/%{pecl_name}
 %if %{with_zts}
 %{php_ztsincldir}/ext/%{pecl_name}
 %endif
 
+
 %files -n apcu-panel55u
-%defattr(-,root,root,-)
 # Need to restrict access, as it contains a clear password
 %attr(750,apache,root) %dir %{_sysconfdir}/apcu-panel
 %config(noreplace) %{_sysconfdir}/apcu-panel/conf.php
