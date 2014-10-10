@@ -33,7 +33,6 @@ Requires(postun): %{php_base}-pear
 Requires:       %{php_base}(zend-abi) = %{php_zend_api}
 Requires:       %{php_base}(api) = %{php_core_api}
 
-Obsoletes:      %{php_base}-apcu < 4.0.0-1
 Conflicts:      %{php_base}-pecl-apc %{php_base}-xcache
 Conflicts:      %{php_base}-mmcache %{php_base}-eaccelerator
 
@@ -91,7 +90,6 @@ Summary:       APCu developer files (header)
 Group:         Development/Libraries
 Requires:      %{name}%{?_isa} = %{version}-%{release}
 Requires:      %{php_base}-devel%{?_isa}
-Obsoletes:      php-pecl-apc-devel < 4
 Provides:       php-pecl-apc-devel = %{version}-%{release}
 Provides:       php-pecl-apc-devel%{?_isa} = %{version}-%{release}
 
@@ -105,10 +103,9 @@ Group:         Applications/Internet
 BuildArch:     noarch
 Requires:      %{name} = %{version}-%{release}
 Requires:      mod_php55u, httpd, %{php_base}-gd
-Obsoletes:      apc-panel < 4
 Provides:       apc-devel = %{version}-%{release}
 
-%description  -n apcu-panel55u
+%description -n apcu-panel55u
 This package provides the APCu control panel, with Apache
 configuration, available on http://localhost/apcu-panel/
 
