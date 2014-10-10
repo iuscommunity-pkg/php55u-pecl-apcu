@@ -143,6 +143,10 @@ cd ..
 cp -pr NTS ZTS
 %endif
 
+# Fix path to configuration file
+sed -e s:apc.conf.php:%{_sysconfdir}/apcu-panel/conf.php:g \
+    -i  NTS/apc.php
+
 
 %build
 cd NTS
@@ -174,9 +178,8 @@ install -D -m 644 package.xml %{buildroot}%{pecl_xmldir}/%{name}.xml
 
 # Install the Control Panel
 # Pages
-install -d -m 755 %{buildroot}%{_datadir}/apcu-panel
-sed -e s:apc.conf.php:%{_sysconfdir}/apcu-panel/conf.php:g \
-    NTS/apc.php >%{buildroot}%{_datadir}/apcu-panel/index.php
+install -D -m 644 -p NTS/apc.php  \
+        %{buildroot}%{_datadir}/apcu-panel/index.php
 # Apache config
 install -D -m 644 -p %{SOURCE2} \
         %{buildroot}%{_sysconfdir}/httpd/conf.d/apcu-panel.conf
