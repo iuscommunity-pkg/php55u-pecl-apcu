@@ -29,8 +29,8 @@ URL:            http://pecl.php.net/package/APCu
 BuildRequires:  %{php_base}-devel
 BuildRequires:  %{php_base}-pear
 
-Requires(post): %{__pecl}
-Requires(postun): %{__pecl}
+Requires(post): %{php_base}-pear
+Requires(postun): %{php_base}-pear
 Requires:       %{php_base}(zend-abi) = %{php_zend_api}
 Requires:       %{php_base}(api) = %{php_core_api}
 
