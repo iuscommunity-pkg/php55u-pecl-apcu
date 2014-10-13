@@ -14,8 +14,8 @@
 
 Name:           %{php_base}-pecl-%{pecl_name}
 Summary:        APC User Cache
-Version:        4.0.6
-Release:        2.ius%{?dist}
+Version:        4.0.7
+Release:        1.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
 Source2:        %{pecl_name}-panel.conf
@@ -264,6 +264,9 @@ fi
 
 
 %changelog
+* Mon Oct 13 2014 Carl George <carl.george@rackspace.com> - 4.0.7-1.ius
+- Latest upstream
+
 * Fri Oct 10 2014 Carl George <carl.george@rackspace.com> - 4.0.6-2.ius
 - Directly require the correct pear package, not /usr/bin/pecl
 - Conflict with stock packages
