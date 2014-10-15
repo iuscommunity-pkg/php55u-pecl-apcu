@@ -15,7 +15,7 @@
 Name:           %{php_base}-pecl-%{pecl_name}
 Summary:        APC User Cache
 Version:        4.0.7
-Release:        1.ius%{?dist}
+Release:        2.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
 Source2:        %{pecl_name}-panel.conf
@@ -33,9 +33,6 @@ Requires(post): %{php_base}-pear
 Requires(postun): %{php_base}-pear
 Requires:       %{php_base}(zend-abi) = %{php_zend_api}
 Requires:       %{php_base}(api) = %{php_core_api}
-
-Conflicts:      %{php_base}-pecl-apc %{php_base}-xcache
-Conflicts:      %{php_base}-mmcache %{php_base}-eaccelerator
 
 Provides:       php-%{pecl_name} = %{version}
 Provides:       php-%{pecl_name}%{?_isa} = %{version}
@@ -264,6 +261,9 @@ fi
 
 
 %changelog
+* Wed Oct 15 2014 Carl George <carl.george@rackspace.com> - 4.0.7-2.ius
+- Remove conflicts on non-existing packages
+
 * Mon Oct 13 2014 Carl George <carl.george@rackspace.com> - 4.0.7-1.ius
 - Latest upstream
 
