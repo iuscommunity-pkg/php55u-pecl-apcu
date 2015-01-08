@@ -15,7 +15,7 @@
 Name:           %{php_base}-pecl-%{pecl_name}
 Summary:        APC User Cache
 Version:        4.0.7
-Release:        2.ius%{?dist}
+Release:        3.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
 Source2:        %{pecl_name}-panel.conf
@@ -111,7 +111,6 @@ BuildArch:     noarch
 Requires:      %{name} = %{version}-%{release}
 Requires:      mod_php55u
 Requires:      %{php_base}-gd
-Requires:      httpd
 Conflicts:     apcu-panel < %{version}
 Provides:      apcu-panel = %{version}
 Provides:      apc-panel = %{version}
@@ -261,6 +260,9 @@ fi
 
 
 %changelog
+* Thu Jan 08 2015 Carl George <carl.george@rackspace.com> - 4.0.7-3.ius
+- Remove redundant dependency on httpd
+
 * Wed Oct 15 2014 Carl George <carl.george@rackspace.com> - 4.0.7-2.ius
 - Remove conflicts on non-existing packages
 
