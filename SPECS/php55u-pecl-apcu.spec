@@ -15,7 +15,7 @@
 Name:           %{php_base}-pecl-%{pecl_name}
 Summary:        APC User Cache
 Version:        4.0.7
-Release:        3.ius%{?dist}
+Release:        4.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
 Source2:        %{pecl_name}-panel.conf
@@ -176,6 +176,8 @@ install -D -m 644 package.xml %{buildroot}%{pecl_xmldir}/%{name}.xml
 # Pages
 install -D -m 644 -p NTS/apc.php  \
         %{buildroot}%{_datadir}/apcu-panel/index.php
+#add apc.php to main package for user configured non Apache webservers
+install -D -m 644 -p NTS/apc.php  %{buildroot}%{pecl_docdir}/%{pecl_name}/apc.php
 # Apache config
 install -D -m 644 -p %{SOURCE2} \
         %{buildroot}%{_sysconfdir}/httpd/conf.d/apcu-panel.conf
@@ -260,6 +262,9 @@ fi
 
 
 %changelog
+* Thu Apr 16 2015 Ben Harper <ben.harper@rackspace.com> - 4.0.7-4.ius
+- add apc.php to main package for user configured non Apache webservers
+
 * Thu Jan 08 2015 Carl George <carl.george@rackspace.com> - 4.0.7-3.ius
 - Remove redundant dependency on httpd
 
