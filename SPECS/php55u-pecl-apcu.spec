@@ -1,3 +1,5 @@
+# IUS spec file for php56u-pecl-apcu, forked from:
+#
 # spec file for php-pecl-apcu
 #
 # Copyright (c) 2013 Remi Collet
