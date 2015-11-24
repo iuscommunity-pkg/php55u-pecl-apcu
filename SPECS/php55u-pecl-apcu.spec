@@ -36,20 +36,24 @@ Requires(postun): %{php_base}-pear
 Requires:       %{php_base}(zend-abi) = %{php_zend_api}
 Requires:       %{php_base}(api) = %{php_core_api}
 
-Provides:       php-%{pecl_name} = %{version}
-Provides:       php-%{pecl_name}%{?_isa} = %{version}
-Provides:       php-pecl-apcu = %{version}
-Provides:       php-pecl-apcu%{?_isa} = %{version}
-Provides:       php-pecl(%{pecl_name}) = %{version}
-Provides:       php-pecl(%{pecl_name})%{?_isa} = %{version}
-Provides:       %{php_base}-%{pecl_name} = %{version}
-Provides:       %{php_base}-%{pecl_name}%{?_isa} = %{version}
-Provides:       %{php_base}-pecl-%{pecl_name} = %{version}
-Provides:       %{php_base}-pecl-%{pecl_name}%{?_isa} = %{version}
-Provides:       %{php_base}-pecl(%{pecl_name}) = %{version}
-Provides:       %{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
+# provide the stock name
+Provides:       php-pecl-%{pecl_name} = %{version}-%{release}
+Provides:       php-pecl-%{pecl_name}%{?_isa} = %{version}-%{release}
 
-Conflicts:      php-pecl-apcu < %{version}
+# provide the stock and IUS names without pecl
+Provides:       php-%{pecl_name} = %{version}-%{release}
+Provides:       php-%{pecl_name}%{?_isa} = %{version}-%{release}
+Provides:       %{php_base}-%{pecl_name} = %{version}-%{release}
+Provides:       %{php_base}-%{pecl_name}%{?_isa} = %{version}-%{release}
+
+# provide the stock and IUS names in pecl() format
+Provides:       php-pecl(%{pecl_name}) = %{version}-%{release}
+Provides:       php-pecl(%{pecl_name})%{?_isa} = %{version}-%{release}
+Provides:       %{php_base}-pecl(%{pecl_name}) = %{version}-%{release}
+Provides:       %{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}-%{release}
+
+# conflict with the stock name
+Conflicts:      php-pecl-%{pecl_name} < %{version}
 
 # Same provides than APC, this is a drop in replacement
 Provides:       php-apc = %{version}
@@ -97,10 +101,10 @@ Group:         Development/Libraries
 Requires:      %{name}%{?_isa} = %{version}-%{release}
 Requires:      %{php_base}-devel%{?_isa}
 Conflicts:     php-pecl-%{pecl_name}-devel < %{version}
-Provides:      php-pecl-%{pecl_name}-devel = %{version}
-Provides:      php-pecl-%{pecl_name}-devel%{?_isa} = %{version}
-Provides:      php-pecl-apc-devel = %{version}
-Provides:      php-pecl-apc-devel%{?_isa} = %{version}
+Provides:      php-pecl-%{pecl_name}-devel = %{version}-%{release}
+Provides:      php-pecl-%{pecl_name}-devel%{?_isa} = %{version}-%{release}
+Provides:      php-pecl-apc-devel = %{version}-%{release}
+Provides:      php-pecl-apc-devel%{?_isa} = %{version}-%{release}
 
 %description devel
 These are the files needed to compile programs using APCu.
