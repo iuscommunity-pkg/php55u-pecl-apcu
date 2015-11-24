@@ -16,8 +16,8 @@
 
 Name:           %{php_base}-pecl-%{pecl_name}
 Summary:        APC User Cache
-Version:        4.0.7
-Release:        4.ius%{?dist}
+Version:        4.0.8
+Release:        1.ius%{?dist}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 Source1:        %{pecl_name}.ini
 Source2:        %{pecl_name}-panel.conf
@@ -269,6 +269,9 @@ fi
 
 
 %changelog
+* Tue Nov 24 2015 Carl George <carl.george@rackspace.com> - 4.0.8-1.ius
+- Latest upstream
+
 * Thu Apr 16 2015 Ben Harper <ben.harper@rackspace.com> - 4.0.7-4.ius
 - add apc.php to main package for user configured non Apache webservers
 
